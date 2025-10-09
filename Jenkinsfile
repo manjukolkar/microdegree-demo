@@ -1,12 +1,17 @@
 pipeline{
-  agent{
+  agent {
     label 'slave'
   }
 
   stages{
-    stage('print hello world'){
+    stage('install httpd'){
       steps{
-        echo "Hello World"
+        sh 'sudo yum install httpd -y'
+      }
+    }
+    stage('copy the web file'){
+      steps{
+        sh 'cp index.html /var/www/html'
       }
     }
   }
